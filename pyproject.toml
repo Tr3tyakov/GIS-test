@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "test-gis-backend-app"
 version = "0.1.0"
-description = ""
-authors = ["tretyakov <Imtretyakov@rambler.ru>"]
+description = "TEST GIS API"
+authors = ["tretyakov <Imtretyakov@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
