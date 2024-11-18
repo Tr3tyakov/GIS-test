@@ -1,0 +1,31 @@
+# Editors
+.idea/
+.idea
+
+# Mac/OSX
+.DS_Store
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+dist/
+sdist/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# local settings
+settings.local.yml
+
+# poetry
+poetry.lock

@@ -1,0 +1,46 @@
+dynaconf_merge: true
+default:
+  NAME: GIS_TEST
+  HOST: 127.0.0.1
+  PORT: 8000
+  RELOAD: True
+  LIFESPAN: "on"
+  LOG_LEVEL: "info"
+  WORKERS: 4
+
+  POSTGRES:
+    host: localhost
+    port: 5432
+    user: postgres
+    password: postgres
+    database: gis_database
+    driver: asyncpg
+    echo: true
+    echo_pool: true
+    pool_pre_ping: true
+    pool_recycle: 3000
+
+  LOGGING:
+    version: 1
+    disable_existing_loggers: false
+    formatters:
+      default:
+        format: '[%(asctime)s] %(levelname)-8s# %(filename)s[LINE:%(lineno)d] %(message)s'
+    handlers:
+      console:
+        level: INFO
+        class: logging.StreamHandler
+        formatter: default
+        stream: ext://sys.stdout
+      error:
+        level: ERROR
+        class: logging.StreamHandler
+        formatter: default
+        stream: ext://sys.stderr
+    loggers:
+      default:
+        level: DEBUG
+        handlers: [ console, error ]
+    root:
+      level: DEBUG
+      handlers: [ console, error ]
