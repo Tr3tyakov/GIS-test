@@ -1,12 +1,14 @@
-from pydantic import BaseModel
+from pydantic import (
+    BaseModel,
+    Field,
+)
 
 
 class CoordinateSchema(BaseModel):
-    longitude: float
-    latitude: float
-
+    latitude: float = Field(..., ge=-90, le=90, description="Широта")
+    longitude: float = Field(..., ge=-180, le=180, description="Долгота")
 
 
 class CreateCircleSchema(BaseModel):
     coordinates: CoordinateSchema
-    radius: float
+    radius: float = Field(..., ge=1, description="Радиус окружности в метрах")

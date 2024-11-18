@@ -1,4 +1,3 @@
-dynaconf_merge: true
 default:
   NAME: GIS_TEST
   HOST: 127.0.0.1
@@ -7,6 +6,11 @@ default:
   LIFESPAN: "on"
   LOG_LEVEL: "info"
   WORKERS: 4
+
+  TOKEN:
+    secret_key: ""
+    algorithm: HS256
+    expire_minutes: 15
 
   POSTGRES:
     host: localhost

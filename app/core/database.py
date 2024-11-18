@@ -34,7 +34,7 @@ class Database(IDatabase):
         )
 
     @asynccontextmanager
-    async def session(self):
+    async def _session(self):
         """
         Контекстный менеджер сессии
         """
