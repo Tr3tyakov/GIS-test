@@ -16,7 +16,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"coordinates\":{\n            \"longitude\": -179.66,\n            \"latitude\":49\n    },\n    \"radius\":1\n}",
+					"raw": "{\n    \"coordinates\":{\n        \"longitude\": 60.660020,\n        \"latitude\": 49.340020\n    },\n    \"radius\":50000\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -75,7 +75,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ilx1MDQxMlx1MDQzYlx1MDQzMFx1MDQzNFx1MDQzOFx1MDQzY1x1MDQzOFx1MDQ0MCIsImV4cCI6MTczMTk1ODAyOH0.M0U9-_x7bdpEU9qHbKetqdLbhCHEX-3BQ3brBV-cZNs",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ilx1MDQxMlx1MDQzYlx1MDQzMFx1MDQzNFx1MDQzOFx1MDQzY1x1MDQzOFx1MDQ0MCIsImV4cCI6MTczMTk1OTk3Mn0.u8wDnj3Geuu3rb_TVb2D52FmZNqdfIaWcYjhrD-6Mhk",
 				"type": "string"
 			}
 		]

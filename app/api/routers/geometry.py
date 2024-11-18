@@ -19,7 +19,7 @@ geometry_router = LoggingRouter(prefix="/api", tags=["Геометрия"])
 async def create_circle_geometry(
     request: Request,
     data: CreateCircleSchema,
-    token: str = Depends(auth_security_schema),
+    # token: str = Depends(auth_security_schema),
     geometry_service: GeometryService = Depends(),
     request_cache_service: RequestCacheService = Depends(),
 ) -> str:

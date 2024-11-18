@@ -2,7 +2,10 @@ import asyncio
 from typing import Any
 
 from fastapi import Depends
-from geoalchemy2 import Geometry
+from geoalchemy2 import (
+    Geography,
+    Geometry,
+)
 from geoalchemy2 import functions as func
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -14,12 +17,12 @@ from app.services.request_cache import RequestCacheService
 
 class GeometryService:
     def __init__(
-        self, context: ApplicationContext = Depends(ApplicationContext.get_context)
+            self, context: ApplicationContext = Depends(ApplicationContext.get_context)
     ):
         self.context = context
 
     async def create_circle(
-        self, data: CreateCircleSchema, request_cache_service: RequestCacheService
+            self, data: CreateCircleSchema, request_cache_service: RequestCacheService
     ) -> str:
         """
         Создание окружности требуемого радиуса на основании долготы и широты
@@ -37,8 +40,14 @@ class GeometryService:
             # Имитация тяжелой обработки
             await asyncio.sleep(6)
 
-            point = func.ST_Point(data.coordinates.longitude, data.coordinates.latitude)
-            circle = func.ST_Buffer(point, data.radius, quad_segs=8)
+            point_geography = func.ST_SetSRID(
+                func.ST_Point(
+                    data.coordinates.longitude, data.coordinates.latitude
+                ),
+                CoordinateReferenceSystemEnum.WGS_84.srid,
+            ).cast(Geography)
+
+            circle = func.ST_Buffer(point_geography, data.radius, quad_segs=8)
 
             geojson = await self.transform_to_geojson(session, circle)
 
@@ -50,10 +59,10 @@ class GeometryService:
         return geojson
 
     async def transform_to_geojson(
-        self,
-        session: AsyncSession,
-        geometry: Geometry,
-        srid: int = CoordinateReferenceSystemEnum.WGS_84.srid,
+            self,
+            session: AsyncSession,
+            geometry: Geometry,
+            srid: int = CoordinateReferenceSystemEnum.WGS_84.srid,
     ) -> Any:
         """
         Преобразование в geojson формат
