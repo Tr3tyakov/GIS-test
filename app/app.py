@@ -38,6 +38,9 @@ class Application:
         for router in ROUTERS:
             self.app.include_router(router)
 
+    # TODO добавить cron задачу на очистку request кеша
+    def clear_request_cache(self) -> None: ...
+
     def init_app(self) -> FastAPI:
         """Инициализация зависимостей"""
         self._init_logger()

@@ -1,7 +1,5 @@
 import asyncio
-from typing import (
-    Any,
-)
+from typing import Any
 
 from fastapi import Depends
 from geoalchemy2 import Geometry
@@ -10,18 +8,18 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.context import ApplicationContext
 from app.core.enums import CoordinateReferenceSystemEnum
-from app.schemas.geometry.geometry_schema import CreateCircleSchema
+from app.schemas.geometry.geometry import CreateCircleSchema
 from app.services.request_cache import RequestCacheService
 
 
 class GeometryService:
     def __init__(
-            self, context: ApplicationContext = Depends(ApplicationContext.get_context)
+        self, context: ApplicationContext = Depends(ApplicationContext.get_context)
     ):
         self.context = context
 
     async def create_circle(
-            self, data: CreateCircleSchema, request_cache_service: RequestCacheService
+        self, data: CreateCircleSchema, request_cache_service: RequestCacheService
     ) -> str:
         """
         Создание окружности требуемого радиуса на основании долготы и широты
@@ -29,7 +27,7 @@ class GeometryService:
         data_hash = request_cache_service.generate_request_hash(
             request_string=self._create_data_string(data)
         )
-        async with self.context.database._session() as session:
+        async with self.context.database.session() as session:
             existent_geojson = await request_cache_service.find_data_by_hash(
                 session, data_hash
             )
@@ -52,10 +50,10 @@ class GeometryService:
         return geojson
 
     async def transform_to_geojson(
-            self,
-            session: AsyncSession,
-            geometry: Geometry,
-            srid: int = CoordinateReferenceSystemEnum.WGS_84.srid,
+        self,
+        session: AsyncSession,
+        geometry: Geometry,
+        srid: int = CoordinateReferenceSystemEnum.WGS_84.srid,
     ) -> Any:
         """
         Преобразование в geojson формат

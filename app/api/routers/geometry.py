@@ -5,7 +5,7 @@ from fastapi import (
 
 from app.api.routers.utils import LoggingRouter
 from app.core.decorations import auth_security_schema
-from app.schemas.geometry.geometry_schema import CreateCircleSchema
+from app.schemas.geometry.geometry import CreateCircleSchema
 from app.services.geometry import GeometryService
 from app.services.request_cache import RequestCacheService
 

@@ -19,9 +19,7 @@ class RequestCacheService:
         return hashlib.sha256(request_string.encode()).hexdigest()
 
     @staticmethod
-    async def find_data_by_hash(
-        session: AsyncSession, data_hash: str
-    ) -> Optional[Dict[str, Any]]:
+    async def find_data_by_hash(session: AsyncSession, data_hash: str) -> Optional[str]:
         """Поиск записей по хешу"""
         # Ищем похожий запрос
         existent_cache = (

@@ -2,7 +2,7 @@
 # Setup the shell and python version.
 # It's necessary to set this because some environments don't link sh -> bash.
 SHELL := /bin/bash
-PYTHON := python3
+PYTHON := python3.11
 SERVICES := app
 PY_CONFIG := app.config  # Путь до файла настроек сервиса
 MESSAGE ?="auto"

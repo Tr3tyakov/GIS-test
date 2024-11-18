@@ -34,7 +34,7 @@ class Database(IDatabase):
         )
 
     @asynccontextmanager
-    async def _session(self):
+    async def session(self):
         """
         Контекстный менеджер сессии
         """
@@ -58,7 +58,3 @@ class Database(IDatabase):
         logging.info("Закрытие подключения к базе данных")
         if self._async_engine:
             await self._async_engine.dispose()
-
-
-class DatabaseException(Exception):
-    pass
