@@ -1,4 +1,8 @@
-from typing import Optional
+from typing import (
+    Any,
+    Dict,
+    Optional,
+)
 
 from fastapi import (
     HTTPException,
@@ -12,7 +16,7 @@ from app.services.security import SecurityService
 
 class AuthSecurity(OAuth2PasswordBearer):
 
-    def __call__(self, request: Request) -> Optional[str]:
+    def __call__(self, request: Request) -> Optional[Dict[str, Any]]:
         authorization = request.headers.get("Authorization")
         if not authorization or not authorization.startswith("Bearer "):
             raise HTTPException(
